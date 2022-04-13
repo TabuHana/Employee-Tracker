@@ -1,7 +1,7 @@
-const db = mysql.createConnection('root:300Monkeysonfire!!!@localhost/employeeManager_db')
 const mysql = require('mysql2')
 const inquirer = require('inquirer')
 
+const db = mysql.createConnection('root:300Monkeysonfire!!!@localhost/employeeManager_db')
 // Add departments, roles, employees
 
 // View departments, roles, employees
@@ -22,33 +22,33 @@ const homeScreen = () => {
           addDepartment()
           break
 
-        case 'Add Role':
-          addRole()
-          break
+        // case 'Add Role':
+        //   addRole()
+        //   break
 
-        case 'Add Employee':
-          addEmployee()
-          break
+        // case 'Add Employee':
+        //   addEmployee()
+        //   break
 
-        case 'View Departments':
-          viewDepartments()
-          break
+        // case 'View Departments':
+        //   viewDepartments()
+        //   break
 
-        case 'View Roles':
-          viewRoles()
-          break
+        // case 'View Roles':
+        //   viewRoles()
+        //   break
 
-        case 'View Employees':
-          viewEmployees()
-          break
+        // case 'View Employees':
+        //   viewEmployees()
+        //   break
 
-        case 'Update Employee Role':
-          Update()
-          break
+        // case 'Update Employee Role':
+        //   Update()
+        //   break
 
-        default:
-          console.log('Exiting System')
-          break
+        // default:
+        //   console.log('Exiting System')
+        //   break
       }
     })
 }
@@ -68,81 +68,98 @@ const addDepartment = () => {
     })
 }
 
-const addRole = () => {
-  inquirer.prompt([{
-    type: 'input',
-    name: 'title',
-    message: 'Enter the title of the role:'
-  },
-  {
-    type: 'input',
-    name: 'salary',
-    message: 'Enter the salary of the role:'
-  },
-  {
-    type: 'input',
-    name: 'department_id',
-    message: 'Enter the id of the role:'
-  }])
-    .then(role => {
-      db.query('INSERT INTO roles SET ?', role, err => {
-        if (err) { console.log(err) }
-      })
-      console.log('Role added, returning to home screen...')
-      homeScreen()
-    })
-}
+// const addRole = () => {
+//   inquirer.prompt([{
+//     type: 'input',
+//     name: 'title',
+//     message: 'Enter the title of the role:'
+//   },
+//   {
+//     type: 'input',
+//     name: 'salary',
+//     message: 'Enter the salary of the role:'
+//   },
+//   {
+//     type: 'input',
+//     name: 'department_id',
+//     message: 'Enter the id of the role:'
+//   }])
+//     .then(role => {
+//       db.query('INSERT INTO roles SET ?', role, err => {
+//         if (err) { console.log(err) }
+//       })
+//       console.log('Role added, returning to home screen...')
+//       homeScreen()
+//     })
+// }
 
-const addEmployee = () => {
-  inquirer.prompt([{
-    type: 'input',
-    name: 'first_name',
-    message: 'Enter the first name of the employee:'
-  },
-  {
-    type: 'input',
-    name: 'last_name',
-    message: 'Enter the last name of the employee:'
-  },
-  {
-    type: 'input',
-    name: 'role_id',
-    message: 'Enter the id of the employee:'
-  },
-  {
-    type: 'list',
-    name: 'managerBool',
-    message: 'Is the employee a manager?'
-    choices: ['Yes', 'No']
-  }])
-    .then(employee => {
-      if (employee.managerBool === 'Yes') {
-        delete employee.managerBool
-      } else if (employee.managerBool === 'No') {
+// const addEmployee = () => {
+//   inquirer.prompt([{
+//     type: 'input',
+//     name: 'first_name',
+//     message: 'Enter the first name of the employee:'
+//   },
+//   {
+//     type: 'input',
+//     name: 'last_name',
+//     message: 'Enter the last name of the employee:'
+//   },
+//   {
+//     type: 'input',
+//     name: 'role_id',
+//     message: 'Enter the id of the employee:'
+//   },
+//   {
+//     type: 'list',
+//     name: 'managerBool',
+//     message: 'Is the employee a manager?',
+//     choices: ['Yes', 'No']
+//   }])
+//     .then(employee => {
+//       if (employee.managerBool === 'Yes') {
+//         delete employee.managerBool
+//         db.query('INSERT INTO employees SET ?', employee, err => {
+//           if (err) { console.log(err) }
+//         })
+//         homeScreen()
+//       } else if (employee.managerBool === 'No') {
+//         inquirer.prompt([{
+//           type: 'input',
+//           name: 'manager_id',
+//           message: 'Enter the id of employee\'s manager:'
+//         }])
+//           .then(nonManager => {
 
-      }
-      db.query('INSERT INTO roles SET ?', employee, err => {
-        if (err) { console.log(err) }
-      })
-      console.log('Role added, returning to home screen...')
-      homeScreen()
-    })
-}
+//             delete employee.managerBool
 
-const viewDepartments = () => {
+//             // let regularEmployee = {
+//             //   ...employee
+//             //   ...nonManager
+//             // }
 
-}
+//             // db.query('INSERT INTO employees SET ?', regularEmployee, err => {
+//             //   if (err) { console.log(err) }
+//             // })
+//             homeScreen()
+//           })
+//       }
+//     })
+// }
 
-const viewRoles = () => {
+// const viewDepartments = () => {
 
-}
+// }
 
-const viewEmployees = () => {
+// const viewRoles = () => {
 
-}
+// }
 
-const Update = () => {
+// const viewEmployees = () => {
 
-}
+// }
+
+// const Update = () => {
+
+// }
 
 homeScreen()
