@@ -152,6 +152,7 @@ const addEmployee = () => {
 
 const viewDepartments = () => {
   db.query('SELECT * FROM departments', (err, departments) => {
+    console.log('\n')
     console.table(departments)
   })
   homeScreen()
@@ -159,6 +160,7 @@ const viewDepartments = () => {
 
 const viewRoles = () => {
   db.query('SELECT * FROM roles', (err, roles) => {
+    console.log('\n')
     console.table(roles)
   })
   homeScreen()
@@ -166,6 +168,7 @@ const viewRoles = () => {
 
 const viewEmployees = () => {
   db.query('SELECT * FROM employees', (err, employees) => {
+    console.log('\n')
     console.table(employees)
   })
   homeScreen()
