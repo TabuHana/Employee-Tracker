@@ -9,7 +9,7 @@ const homeScreen = () => {
     type: 'list',
     name: 'homeSelect',
     message: 'Select an option',
-    choices: ['Add Department', 'Add Role', 'Add Employee', 'View Departments', 'View Roles', 'View Employees', 'Update Employee Role']
+    choices: ['Add Department', 'Add Role', 'Add Employee', 'View Departments', 'View Roles', 'View Employees', 'Update Employee Role', 'Quit']
   }])
     .then(home => {
       switch (home.homeSelect) {
@@ -25,25 +25,29 @@ const homeScreen = () => {
           addEmployee()
           break
 
-        // case 'View Departments':
-        //   viewDepartments()
-        //   break
+        case 'View Departments':
+          viewDepartments()
+          break
 
-        // case 'View Roles':
-        //   viewRoles()
-        //   break
+        case 'View Roles':
+          viewRoles()
+          break
 
-        // case 'View Employees':
-        //   viewEmployees()
-        //   break
+        case 'View Employees':
+          viewEmployees()
+          break
 
-        // case 'Update Employee Role':
-        //   Update()
-        //   break
+        case 'Update Employee Role':
+          Update()
+          break
 
-        // default:
-        //   console.log('Exiting System')
-        //   break
+        case 'Quit':
+        quit()
+        break
+
+        default:
+          console.log('Exiting System')
+          break
       }
     })
 }
@@ -167,8 +171,32 @@ const viewEmployees = () => {
   homeScreen()
 }
 
-// const Update = () => {
+// Updates employee's role
+const Update = () => {
+  inquirer.prompt([{
+    type: 'input',
+    name: 'id',
+    message: 'Enter the id of the employee:'
+  },
+  {
+    type: 'input',
+    name: 'role_id',
+    message: 'Enter the employee\'s new role:'
+  }])
+  .then(roleChange => {
+    let role = { role_id: roleChange.role_id }
 
-// }
+    db.query(`UPDATE employees SET ? WHERE id = ${roleChange.id}`, roleChange, err => {
+      if (err) { console.log(err) }
+    })
+    console.log('Role updated, returning to home screen...')
+    homeScreen()
+  })
+}
+
+const quit = () => {
+  console.log('Goodbye')
+  process.exit(1)
+}
 
 homeScreen()
