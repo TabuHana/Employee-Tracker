@@ -153,13 +153,19 @@ const viewDepartments = () => {
   homeScreen()
 }
 
-// const viewRoles = () => {
+const viewRoles = () => {
+  db.query('SELECT * FROM roles', (err, roles) => {
+    console.table(roles)
+  })
+  homeScreen()
+}
 
-// }
-
-// const viewEmployees = () => {
-
-// }
+const viewEmployees = () => {
+  db.query('SELECT * FROM employees', (err, employees) => {
+    console.table(employees)
+  })
+  homeScreen()
+}
 
 // const Update = () => {
 
