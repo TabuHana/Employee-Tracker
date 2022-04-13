@@ -2,13 +2,8 @@ const mysql = require('mysql2')
 const inquirer = require('inquirer')
 
 const db = mysql.createConnection('root:300Monkeysonfire!!!@localhost/employeeManager_db')
-// Add departments, roles, employees
 
-// View departments, roles, employees
-
-// Update employee roles
-
-// Need Type, name, message
+// Need Type, name, message. Prompt for event
 const homeScreen = () => {
   inquirer.prompt([{
     type: 'list',
@@ -16,11 +11,12 @@ const homeScreen = () => {
     message: 'Select an option',
     choices: ['Add Department', 'Add Role', 'Add Employee', 'View Departments', 'View Roles', 'View Employees', 'Update Employee Role']
   }])
-    .then(home => {
-      switch (home.home) {
-        case 'Add Department':
-          addDepartment()
-          break
+     .then(home => {
+       console.log(home)
+    //   switch (home.home) {
+    //     case 'Add Department':
+    //       addDepartment()
+    //       break
 
         // case 'Add Role':
         //   addRole()
@@ -49,24 +45,24 @@ const homeScreen = () => {
         // default:
         //   console.log('Exiting System')
         //   break
-      }
-    })
-}
+//       }
+     })
+ }
 
-const addDepartment = () => {
-  inquirer.prompt([{
-    type: 'input',
-    name: 'name',
-    message: 'Enter the name of the department:'
-  }])
-    .then(department => {
-      db.query('INSERT INTO departments SET ?', department, err => {
-        if (err) { console.log(err) }
-      })
-      console.log('Department added, returning to home screen...')
-      homeScreen()
-    })
-}
+// const addDepartment = () => {
+//   inquirer.prompt([{
+//     type: 'input',
+//     name: 'name',
+//     message: 'Enter the name of the department:'
+//   }])
+//     .then(department => {
+//       db.query('INSERT INTO departments SET ?', department, err => {
+//         if (err) { console.log(err) }
+//       })
+//       console.log('Department added, returning to home screen...')
+//       homeScreen()
+//     })
+// }
 
 // const addRole = () => {
 //   inquirer.prompt([{
