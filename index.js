@@ -1,7 +1,6 @@
 const mysql = require('mysql2')
 const inquirer = require('inquirer')
-
-const db = mysql.createConnection('mysql://root:300Monkeysonfire!!!@localhost/employeeManager_db')
+const db = require('./db')
 
 // Need Type, name, message. Prompt for event
 const homeScreen = () => {
@@ -63,7 +62,7 @@ const addDepartment = () => {
       db.query('INSERT INTO departments SET ?', department, err => {
         if (err) { console.log(err) }
       })
-      console.log('Department added, returning to home screen...')
+      console.log(`${department.name} added, returning to home screen...`)
       homeScreen()
     })
 }
@@ -89,7 +88,7 @@ const addRole = () => {
       db.query('INSERT INTO roles SET ?', role, err => {
         if (err) { console.log(err) }
       })
-      console.log('Role added, returning to home screen...')
+      console.log(`${role.title} added, returning to home screen...`)
       homeScreen()
     })
 }
