@@ -23,7 +23,7 @@
   
   ***
   ## Visual Presentation
-  ![VisualPresentation](images/readmeVisualPresentation.gif)
+  ![VisualPresentation](images/longGif.gif)
 
   ***
   ## Installation
